@@ -11,6 +11,7 @@ const { pool } = require('../utilities/poolConfig')
 //LOGIN model
 const loginModel = async (username, password) => {
     try {
+        await pool.connect();
         const query = 'SELECT * FROM user_profile WHERE username = $1'
         const values = [username]
         const result = await pool.query(query, values)
@@ -28,6 +29,7 @@ module.exports.loginModel = loginModel
 //USER REGISTER
 const userRegister = async (email, username, password) => {
     try {
+        await pool.connect();
         const hashPassword = await bcrypt.hash(password, 2)
         const query = 'INSERT INTO user_profile (username, email, password, role) VALUES ($1, $2, $3,$4)'
         const valuse = [username, email, hashPassword, 'user']
