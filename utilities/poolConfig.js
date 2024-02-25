@@ -32,4 +32,9 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+pool.connect((err) => {
+    if (err) throw err
+    console.log('Connect data base SS')
+})
+
 module.exports = { pool };
