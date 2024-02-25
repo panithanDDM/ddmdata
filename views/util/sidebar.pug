@@ -1,0 +1,77 @@
+//- ======= Sidebar =======
+aside(id="sidebar" class="sidebar")
+    ul(id="sidebar-nav" class="sidebar-nav")
+        li(class="nav-item")
+        a(href="/home/" class="nav-link")
+            i(class="bi bi-grid")
+            span Dashboard
+        
+
+
+
+        li(class="nav-item")
+        a.nav-link.collapsed(data-bs-target='#forms-nav' data-bs-toggle='collapse' href='#')
+            i.bi.bi-journal-text
+            span Forms
+            i.bi.bi-chevron-down.ms-auto
+        ul#forms-nav.nav-content.collapse(data-bs-parent='#sidebar-nav')
+            li
+            a(href='/inventory/form/')
+                i.bi.bi-circle
+                span Form Inventory
+            li
+            a(href='#')
+                i.bi.bi-circle
+                span Form Survey
+            li
+            a(href='#')
+                i.bi.bi-circle
+                span Form Repair
+            li
+            a(href='#')
+                i.bi.bi-circle
+                span Form Damage
+        // End Forms Nav
+        
+        
+        // Page title
+        li.nav-heading Pages
+        
+        
+        //- li.nav-item
+        //- a.nav-link.collapsed(href='users-profile.html')
+        //-     i.bi.bi-person
+        //-     span Profile
+        //- // End Profile Page Nav
+        //- li.nav-item
+        //- a.nav-link.collapsed(href='pages-faq.html')
+        //-     i.bi.bi-question-circle
+        //-     span F.A.Q
+        //- // End F.A.Q Page Nav
+        //- li.nav-item
+        //- a.nav-link.collapsed(href='pages-contact.html')
+        //-     i.bi.bi-envelope
+        //-     span Contact
+        //- // End Contact Page Nav
+        //- li.nav-item
+        //- a.nav-link.collapsed(href='pages-register.html')
+        //-     i.bi.bi-card-list
+        //-     span Register
+        //- // End Register Page Nav
+        li.nav-item
+        a.nav-link.collapsed(href='/logout/')
+            i.bi.bi-box-arrow-in-right
+            span Logout
+        // End Login Page Nav
+    //-     li.nav-item
+    //-     a.nav-link.collapsed(href='pages-error-404.html')
+    //-         i.bi.bi-dash-circle
+    //-         span Error 404
+    //-     // End Error 404 Page Nav
+    //-     li.nav-item
+    //-     a.nav-link.collapsed(href='pages-blank.html')
+    //-         i.bi.bi-file-earmark
+    //-         span Blank
+    //-     // End Blank Page Nav
+    //- // End Sidebar a(href="")
+

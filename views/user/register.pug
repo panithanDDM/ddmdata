@@ -1,0 +1,55 @@
+extends ../layout
+
+block content
+  main
+    .container
+      section.section.register.min-vh-100.d-flex.flex-column.align-items-center.justify-content-center.py-4
+        .container
+          .row.justify-content-center
+            .col-lg-4.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+              .d-flex.justify-content-center.py-4
+              //- Form REGISTER
+              .card.mb-3
+                .card-body
+                  .pt-4.pb-2
+                    h5.card-title.text-center.pb-0.fs-4 Create an Account
+                    p.text-center.small Enter your personal details to create account
+                  form(action="/register/" method='POST' class="row g-3 needs-validation" novalidate) 
+                    if flash.error 
+                      p.alert.alert-danger= flash.error
+
+                    .col-12
+                      label.form-label(for='yourName') Email
+                      input#yourName.form-control(name='email' type='email'  placeholder='' required)
+                      .invalid-feedback Please, enter your email!
+
+                    .col-12
+                      label.form-label(for='yourUsername') Username
+                      .input-group.has-validation
+                        span#inputGroupPrepend.input-group-text @
+                        input#yourUsername.form-control(name='username' type='text' placeholder='' required)
+                        .invalid-feedback Please choose a username.
+                 
+                    .col-12
+                      label.form-label(for='yourPassword') Password
+                      input#yourPassword.form-control(type='password' name='password' placeholder="" required)
+                      .invalid-feedback Please enter your password!
+
+                    .col-12
+                      label.form-label(for='yourComfirmPassword') Comfirm Password
+                      input#ConfirmPassword.form-control(name='ConfirmPassword' type='password' placeholder="" required)
+                      .invalid-feedback Please enter your password!
+                      
+                    .col-12
+                      .form-check
+                        input#acceptTerms.form-check-input(name='terms' type='checkbox' checked required)
+                        label.form-check-label(for='acceptTerms')
+                          | I agree and accept the 
+                          a(href='#') terms and conditions
+                        .invalid-feedback You must agree before submitting.
+                    .col-12
+                      button.btn.btn-primary.w-100(type='submit') Create Account
+                    .col-12
+                      p.small.mb-0
+                        | Already have an account? 
+                        a(href='/') Log in

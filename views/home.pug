@@ -1,0 +1,407 @@
+extends layout 
+
+block content 
+
+
+
+  include ./util/navbar
+  include ./util/sidebar
+
+
+  main#main.main
+    .pagetitle
+      h1 Dashboard
+    // End Page Title
+    section.section.dashboard
+      .row
+         
+        // Left side columns
+        .col-lg-8
+          .row
+
+            // Sales Card
+            .col-xxl-4.col-md-6
+              .card.info-card.sales-card 
+                .card-body
+                  h5.card-title
+                    | All 
+                    span | Equipment
+                  .d-flex.align-items-center
+                    .card-icon.rounded-circle.d-flex.align-items-center.justify-content-center
+                      i.bi.bi-cart
+                    .ps-3
+                      h6= totalCount
+                      //- span.text-success.small.pt-1.fw-bold 12%
+                      //- span.text-muted.small.pt-2.ps-1 increase
+            // End Sales Card
+
+            // Revenue Card
+            .col-xxl-4.col-md-6
+              .card.info-card.revenue-card
+                //- .filter
+                //-   a.icon(href='#' data-bs-toggle='dropdown')
+                //-     i.bi.bi-three-dots
+                //-   ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+                //-     li.dropdown-header.text-start
+                //-       h6 Filter
+                //-     li
+                //-       a.dropdown-item(href='#') Today
+                //-     li
+                //-       a.dropdown-item(href='#') This Month
+                //-     li
+                //-       a.dropdown-item(href='#') This Year
+                .card-body
+                  h5.card-title
+                    | Active 
+                    span | Equipment
+                  .d-flex.align-items-center
+                    .card-icon.rounded-circle.d-flex.align-items-center.justify-content-center
+                      i.bi.bi-currency-dollar
+                    .ps-3
+                      h6= activeCount
+                      //- span.text-success.small.pt-1.fw-bold 8%
+                      //- span.text-muted.small.pt-2.ps-1 increase
+            // End Revenue Card
+
+            // Customers Card
+            .col-xxl-4.col-xl-12
+              .card.info-card.customers-card
+                //- .filter
+                //-   a.icon(href='#' data-bs-toggle='dropdown')
+                //-     i.bi.bi-three-dots
+                //-   ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+                //-     li.dropdown-header.text-start
+                //-       h6 Filter
+                //-     li
+                //-       a.dropdown-item(href='#') Today
+                //-     li
+                //-       a.dropdown-item(href='#') This Month
+                //-     li
+                //-       a.dropdown-item(href='#') This Year
+                .card-body
+                  h5.card-title
+                    | Damage 
+                    span | Equipment 
+                  .d-flex.align-items-center
+                    .card-icon.rounded-circle.d-flex.align-items-center.justify-content-center
+                      i.bi.bi-people
+                    .ps-3
+                      h6= damageCount
+                      //- span.text-danger.small.pt-1.fw-bold 12%
+                      //- span.text-muted.small.pt-2.ps-1 decrease
+            // End Customers Card
+
+            //- // Reports
+            //- .col-12
+            //-   .card
+            //-     .filter
+            //-       a.icon(href='#' data-bs-toggle='dropdown')
+            //-         i.bi.bi-three-dots
+            //-       ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+            //-         li.dropdown-header.text-start
+            //-           h6 Filter
+            //-         li
+            //-           a.dropdown-item(href='#') Today
+            //-         li
+            //-           a.dropdown-item(href='#') This Month
+            //-         li
+            //-           a.dropdown-item(href='#') This Year
+            //-     .card-body
+            //-       h5.card-title
+            //-         | Reports 
+            //-         span /Today
+            //-       // Line Chart
+            //-       #reportsChart
+            //- // End Reports
+
+
+            // Recent Sales
+            .col-12
+              .card.recent-sales.overflow-auto
+                //- .filter
+                //-   a.icon(href='#' data-bs-toggle='dropdown')
+                //-     i.bi.bi-three-dots
+                //-   ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+                //-     li.dropdown-header.text-start
+                //-       h6 Filter
+                //-     li
+                //-       a.dropdown-item(href='#') Today
+                //-     li
+                //-       a.dropdown-item(href='#') This Month
+                //-     li
+                //-       a.dropdown-item(href='#') This Year
+                .card-body
+                  h5.card-title
+                    | Inventory 
+                    span | Data table
+                  table.table.table-borderless.datatable
+                    thead
+                      tr
+                        th(scope='col') ID
+                        th(scope='col') Name
+                        th(scope='col') Serail number
+                        th(scope='col') Used date
+                        th(scope='col') Status
+                    tbody
+                      each item in data
+                        - var badgeClass = '';
+                        - if (item.status === 'Active') {
+                            - badgeClass = 'bg-success';
+                        - } else if (item.status === 'Pending') {
+                            - badgeClass = 'bg-warning';
+                        - } else if (item.status === 'Damaged') {
+                            - badgeClass = 'bg-danger';
+                        - }
+
+                        tr
+                          th(scope='row')
+                            a(href='#')= item.id
+                          td= item.name
+                          td
+                            a.text-primary(href='#')= item.serail_number
+                          td= item.daysPassed.toLocaleString() + ' ' + 'Days'
+                          td
+                            span.badge(class=badgeClass)= item.status
+
+
+
+                      
+            // End Recent Sales
+        //-     // Top Selling
+        //-     .col-12
+        //-       .card.top-selling.overflow-auto
+        //-         .filter
+        //-           a.icon(href='#' data-bs-toggle='dropdown')
+        //-             i.bi.bi-three-dots
+        //-           ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+        //-             li.dropdown-header.text-start
+        //-               h6 Filter
+        //-             li
+        //-               a.dropdown-item(href='#') Today
+        //-             li
+        //-               a.dropdown-item(href='#') This Month
+        //-             li
+        //-               a.dropdown-item(href='#') This Year
+        //-         .card-body.pb-0
+        //-           h5.card-title
+        //-             | Top Selling 
+        //-             span | Today
+        //-           table.table.table-borderless
+        //-             thead
+        //-               tr
+        //-                 th(scope='col') Preview
+        //-                 th(scope='col') Product
+        //-                 th(scope='col') Price
+        //-                 th(scope='col') Sold
+        //-                 th(scope='col') Revenue
+        //-             tbody
+        //-               tr
+        //-                 th(scope='row')
+        //-                   a(href='#')
+        //-                     img(src='assets/img/product-1.jpg' alt='')
+        //-                 td
+        //-                   a.text-primary.fw-bold(href='#') Ut inventore ipsa voluptas nulla
+        //-                 td $64
+        //-                 td.fw-bold 124
+        //-                 td $5,828
+        //-               tr
+        //-                 th(scope='row')
+        //-                   a(href='#')
+        //-                     img(src='assets/img/product-2.jpg' alt='')
+        //-                 td
+        //-                   a.text-primary.fw-bold(href='#') Exercitationem similique doloremque
+        //-                 td $46
+        //-                 td.fw-bold 98
+        //-                 td $4,508
+        //-               tr
+        //-                 th(scope='row')
+        //-                   a(href='#')
+        //-                     img(src='assets/img/product-3.jpg' alt='')
+        //-                 td
+        //-                   a.text-primary.fw-bold(href='#') Doloribus nisi exercitationem
+        //-                 td $59
+        //-                 td.fw-bold 74
+        //-                 td $4,366
+        //-               tr
+        //-                 th(scope='row')
+        //-                   a(href='#')
+        //-                     img(src='assets/img/product-4.jpg' alt='')
+        //-                 td
+        //-                   a.text-primary.fw-bold(href='#') Officiis quaerat sint rerum error
+        //-                 td $32
+        //-                 td.fw-bold 63
+        //-                 td $2,016
+        //-               tr
+        //-                 th(scope='row')
+        //-                   a(href='#')
+        //-                     img(src='assets/img/product-5.jpg' alt='')
+        //-                 td
+        //-                   a.text-primary.fw-bold(href='#') Sit unde debitis delectus repellendus
+        //-                 td $79
+        //-                 td.fw-bold 41
+        //-                 td $3,239
+        //-     // End Top Selling
+        //- // End Left side columns
+        //- // Right side columns
+        .col-lg-4
+          
+              
+          //-       // End activity item
+          //- // End Recent Activity
+          //- // Budget Report
+          //- .card
+          //-   .filter
+          //-     a.icon(href='#' data-bs-toggle='dropdown')
+          //-       i.bi.bi-three-dots
+          //-     ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+          //-       li.dropdown-header.text-start
+          //-         h6 Filter
+          //-       li
+          //-         a.dropdown-item(href='#') Today
+          //-       li
+          //-         a.dropdown-item(href='#') This Month
+          //-       li
+          //-         a.dropdown-item(href='#') This Year
+          //-   .card-body.pb-0
+          //-     h5.card-title
+          //-       | Budget Report 
+          //-       span | This Month
+          //-     #budgetChart.echart(style='min-height: 400px;')
+          //- // End Budget Report
+
+          // Website Traffic
+          .card
+            .card-body.pb-0
+              h5.card-title
+                | Equipment Status 
+                span | All 
+              #trafficChart.echart(style='min-height: 400px;')
+              script.
+                document.addEventListener("DOMContentLoaded", () => {
+                  const totalCount = #{totalCount};
+                  const activeCount = #{activeCount};
+                  const damageCount = #{damageCount};
+                  const pendingCount = #{pendingCount};
+
+                  echarts.init(document.querySelector("#trafficChart")).setOption({
+                      tooltip: {
+                          trigger: 'item'
+                      },
+                      legend: {
+                          top: '5%',
+                          left: 'center'
+                      },
+                      series: [{
+                          name: 'Equipment',
+                          type: 'pie',
+                          radius: ['40%', '70%'],
+                          avoidLabelOverlap: false,
+                          label: {
+                              show: false,
+                              position: 'center'
+                          },
+                          emphasis: {
+                              label: {
+                                  show: true,
+                                  fontSize: '18',
+                                  fontWeight: 'bold'
+                              }
+                          },
+                          labelLine: {
+                              show: false
+                          },
+                          data: [
+                              {
+                                  value: activeCount,
+                                  name: 'Active',
+                                  itemStyle:{
+                                    color:'#55a630'
+                                  }
+                              },
+                              {
+                                  value: damageCount,
+                                  name: 'Damage',
+                                  itemStyle:{
+                                    color:'#e74c3c'
+                                  }
+                              },
+                              {
+                                  value: pendingCount,
+                                  name: 'Pending',
+                                  itemStyle: {
+                                    color: '#f39c12' // เปลี่ยนสีของข้อมูล Pending ได้ที่นี่
+                                  }
+                              }
+                          ]
+                      }]
+                  });
+                });
+          // End Website Traffic
+
+          // Recent Activity
+          .card
+            .card-body
+              h5.card-title
+                | Location 
+                span | 
+              #map 
+              script.
+                let map = L.map('map').setView([13.297010, 100.921484], 15);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '&copy; DDM'
+                }).addTo(map);
+
+                var circle = L.circleMarker([13.297010, 100.921484],{
+                  color: 'blue',
+                  fillColor: 'blue',
+                  fillOpacity: 0.5,//
+                }).addTo(map);
+                circle.bindPopup("Devdronemapper");
+
+
+          //- // News & Updates Traffic
+          //- .card
+          //-   .filter
+          //-     a.icon(href='#' data-bs-toggle='dropdown')
+          //-       i.bi.bi-three-dots
+          //-     ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+          //-       li.dropdown-header.text-start
+          //-         h6 Filter
+          //-       li
+          //-         a.dropdown-item(href='#') Today
+          //-       li
+          //-         a.dropdown-item(href='#') This Month
+          //-       li
+          //-         a.dropdown-item(href='#') This Year
+          //-   .card-body.pb-0
+          //-     h5.card-title
+          //-       | News &amp; Updates 
+          //-       span | Today
+          //-     .news
+          //-       .post-item.clearfix
+          //-         img(src='assets/img/news-1.jpg' alt='')
+          //-         h4
+          //-           a(href='#') Nihil blanditiis at in nihil autem
+          //-         p Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...
+          //-       .post-item.clearfix
+          //-         img(src='assets/img/news-2.jpg' alt='')
+          //-         h4
+          //-           a(href='#') Quidem autem et impedit
+          //-         p Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...
+          //-       .post-item.clearfix
+          //-         img(src='assets/img/news-3.jpg' alt='')
+          //-         h4
+          //-           a(href='#') Id quia et et ut maxime similique occaecati ut
+          //-         p Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...
+          //-       .post-item.clearfix
+          //-         img(src='assets/img/news-4.jpg' alt='')
+          //-         h4
+          //-           a(href='#') Laborum corporis quo dara net para
+          //-         p Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...
+          //-       .post-item.clearfix
+          //-         img(src='assets/img/news-5.jpg' alt='')
+          //-         h4
+          //-           a(href='#') Et dolores corrupti quae illo quod dolor
+          //-         p
+          //-           | Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...
+             
