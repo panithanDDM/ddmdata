@@ -17,9 +17,6 @@ if (process.env.NODE_ENV === 'production') {
         database: POSTGRES_DATABASE,
         user: POSTGRES_USER,
         password: POSTGRES_PASSWORD,
-        ssl: true,
-        keepAlive: true,
-        idleTimeoutMillis: 3000,
     });
 } else {
     pool = new Pool({
