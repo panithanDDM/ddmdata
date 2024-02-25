@@ -6,12 +6,9 @@ const { pool } = require('../utilities/poolConfig')
 
 // Create user 
 
-
-
 //LOGIN model
 const loginModel = async (username, password) => {
     try {
-
         const query = 'SELECT * FROM user_profile WHERE username = $1'
         const values = [username]
         const result = await pool.query(query, values)
