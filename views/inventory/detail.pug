@@ -1,0 +1,118 @@
+extends ../layout
+
+block content
+    include ../util/navbar
+    include ../util/sidebar
+
+    main(id="main" class="main")
+
+        div(class="pagetitle mb-4")
+            h1= `Inventory Detail | ${detailInventory.name}`                 
+                                        
+        
+        section(class="section profile")
+            div(class="row")
+             
+                div(class="col-xl-4")
+
+                    div(class="card")
+                        div(class="card-body profile-card pt-4 d-flex flex-column align-items-center")
+                            - var badgeClass = '';
+                            - if (detailInventory.status === 'Active') {
+                                - badgeClass = 'bg-success';
+                            - } else if (detailInventory.status === 'Pending') {
+                                - badgeClass = 'bg-warning';
+                            - } else if (detailInventory.status === 'Damaged') {
+                                - badgeClass = 'bg-danger';
+                            - }
+                            img(src=`/images/inventory_upload/${detailInventory.image}` class="rounded-2" alt="inventory")
+                            h2= detailInventory.name
+                            h3= detailInventory.serail_number
+                            div.col-lg-9.col-md-8.badge(class=badgeClass)= detailInventory.status
+
+                div(class="col-xl-8")
+                    div(class="card")
+                        div(class="card-body pt-3")
+
+                            ul(class="nav nav-tabs nav-tabs-bordered")
+                                li(class="nav-item")
+                                    button(class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview") 
+                                        | Overview
+                                li(class="nav-item")
+                                    button(class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit") 
+                                        | Edit Inventory
+
+                            div(class="tab-content pt-2")
+
+                                div(class="tab-pane fade show active profile-overview" id="profile-overview")
+                                    h5(class="card-title") Inventory Detail
+
+                                    div(class="row")
+                                        div(class="col-lg-3 col-md-4 label") 
+                                            h6 Equiment Name
+                                        div(class="col-lg-9 col-md-8")= detailInventory.name
+                                    
+                                    div(class="row mt-3")
+                                        div(class="col-lg-3 col-md-4 label") 
+                                            h6 Equiment Model
+                                        div(class="col-lg-9 col-md-8")= detailInventory.model
+
+                                    div(class="row mt-3")
+                                        div(class="col-lg-3 col-md-4 label") 
+                                            h6 Serial number
+                                        div(class="col-lg-9 col-md-8")= detailInventory.serail_number
+
+                                    div(class="row mt-3")
+                                        div(class="col-lg-3 col-md-4 label") 
+                                            h6 Type
+                                        div(class="col-lg-9 col-md-8")= detailInventory.type
+
+                                    div(class="row mt-3")
+                                        div(class="col-lg-3 col-md-4 label") 
+                                            h6 Actived Date
+                                        div(class="col-lg-9 col-md-8")= detailInventory.date.toLocaleDateString('en-US')
+
+                                    div(class="row mt-3")
+                                        div(class="col-lg-3 col-md-4 label") 
+                                            h6 Used Date
+                                        div(class="col-lg-9 col-md-8")= daysPassed.toLocaleString() + " Days"
+
+                                    if (detailInventory.cycle_use != null)
+                                        div(class="row mt-3")
+                                            div(class="col-lg-3 col-md-4 label") 
+                                                h6 Cycle Use
+                                            div(class="col-lg-9 col-md-8")= `${detailInventory.cycle_use} Times`
+
+
+                                div(class="tab-pane fade profile-edit" id="profile-edit")
+                                    //- form(action="") 
+
+                                    //-     div(class="row mb-3")
+                                    //-         label(for="" class="col-md-4 col-lg-3 col-form-label") Equiment Name
+                                    //-         div(class="col-md-8 col-lg-9")
+                                    //-             input(value=`${detailInventory.name}`)
+
+                                    //-     div(class="row mb-3")
+                                    //-         label(for="" class="col-md-4 col-lg-3 col-form-label") Equiment Name
+                                    //-         div(class="col-md-8 col-lg-9")
+                                    //-             input(value=`${detailInventory.name}`)
+
+                                    //-     div(class="row mb-3")
+                                    //-         label(for="" class="col-md-4 col-lg-3 col-form-label") Equiment Name
+                                    //-         div(class="col-md-8 col-lg-9")
+                                    //-             input(value=`${detailInventory.name}`)
+
+                                    //-     div(class="row mb-3")
+                                    //-         label(for="" class="col-md-4 col-lg-3 col-form-label") Equiment Name
+                                    //-         div(class="col-md-8 col-lg-9")
+                                    //-             input(value=`${detailInventory.name}`)
+
+                                    //-     div(class="row mb-3")
+                                    //-         label(for="" class="col-md-4 col-lg-3 col-form-label") Equiment Name
+                                    //-         div(class="col-md-8 col-lg-9")
+                                    //-             input(value=`${detailInventory.name}`)              
+                                                
+                                    
+
+                                
+                

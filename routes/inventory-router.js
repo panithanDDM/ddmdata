@@ -27,6 +27,7 @@ const upload = multer({ storage: storage });
 router.get('/form/', AuthChecker, inventoryController.invenForm)
 router.post('/form/', upload.single('image'), inventoryController.formInventory)
 
-
+//get By ID 
+router.get('/:id/', inventoryController.detailInventory)
 
 module.exports = router;

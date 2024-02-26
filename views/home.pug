@@ -56,7 +56,7 @@ block content
                     span | Equipment
                   .d-flex.align-items-center
                     .card-icon.rounded-circle.d-flex.align-items-center.justify-content-center
-                      i.bi.bi-currency-dollar
+                      i.ri.ri-emotion-line
                     .ps-3
                       h6= activeCount
                       //- span.text-success.small.pt-1.fw-bold 8%
@@ -84,7 +84,7 @@ block content
                     span | Equipment 
                   .d-flex.align-items-center
                     .card-icon.rounded-circle.d-flex.align-items-center.justify-content-center
-                      i.bi.bi-people
+                      i.ri.ri-emotion-sad-line
                     .ps-3
                       h6= damageCount
                       //- span.text-danger.small.pt-1.fw-bold 12%
@@ -155,10 +155,10 @@ block content
 
                         tr
                           th(scope='row')
-                            a(href='#')= item.id
-                          td= item.name
+                            a(href=`/inventory/${item.id}`)= item.id
                           td
-                            a.text-primary(href='#')= item.serail_number
+                            a.text-primary(href=`/inventory/${item.id}`)= item.name
+                          td= item.serail_number
                           td= item.daysPassed.toLocaleString() + ' ' + 'Days'
                           td
                             span.badge(class=badgeClass)= item.status

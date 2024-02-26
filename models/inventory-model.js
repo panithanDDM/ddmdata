@@ -120,3 +120,20 @@ const inventorySaveData = async (
     }
 }
 module.exports.inventorySaveData = inventorySaveData
+
+
+
+
+//สำหรับเลือกตาม ID 
+const getInventoryById = async (id) => {
+    try {
+        const query = `SELECT * FROM inventory WHERE id = $1`
+        const result = await pool.query(query, [id])
+        return result.rows[0]
+    }
+    catch (error) {
+        console.log(`Error from getInventoryById :: ${error}`)
+        throw error
+    }
+}
+module.exports.getInventoryById = getInventoryById
