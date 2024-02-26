@@ -1,14 +1,23 @@
-// const { Pool } = require('pg');
+const { Pool } = require('pg');
 
-// const {
-//     POSTGRES_HOST,
-//     POSTGRES_PORT,
-//     POSTGRES_DATABASE,
-//     POSTGRES_USER,
-//     POSTGRES_PASSWORD,
-// } = process.env;
+const {
+    POSTGRES_HOST,
+    POSTGRES_PORT,
+    POSTGRES_DATABASE,
+    POSTGRES_USER,
+    POSTGRES_PASSWORD,
+} = process.env;
 
-// let pool;
+
+
+let pool = new Pool({
+    port: POSTGRES_PORT,
+    host: POSTGRES_HOST,
+    database: POSTGRES_DATABASE,
+    password: POSTGRES_PASSWORD,
+    user: POSTGRES_USER,
+    port: POSTGRES_PORT,
+});
 
 // if (process.env.NODE_ENV === 'production') {
 //     pool = new Pool({
@@ -29,33 +38,33 @@
 //     });
 // }
 
-// pool.connect((err) => {
-//     if (err) throw err
-//     console.log('Connect data base SS')
-// })
-
-// module.exports = { pool };
-
-
-const { Pool } = require('pg');
-
-const {
-    POSTGRES_HOST,
-    POSTGRES_PORT,
-    POSTGRES_DATABASE,
-    POSTGRES_USER,
-    POSTGRES_PASSWORD,
-} = process.env;
-
-const connectionString = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}`
-
-const pool = new Pool({
-    connectionString,
-});
-
 pool.connect((err) => {
-    if (err) throw err;
-    console.log('Connected to database SS');
-});
+    if (err) throw err
+    console.log('Connect data base SS')
+})
 
 module.exports = { pool };
+
+
+// const { Pool } = require('pg');
+
+// const {
+//     POSTGRES_HOST,
+//     POSTGRES_PORT,
+//     POSTGRES_DATABASE,
+//     POSTGRES_USER,
+//     POSTGRES_PASSWORD,
+// } = process.env;
+
+// const connectionString = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}`
+
+// const pool = new Pool({
+//     connectionString,
+// });
+
+// pool.connect((err) => {
+//     if (err) throw err;
+//     console.log('Connected to database SS');
+// });
+
+// module.exports = { pool };
