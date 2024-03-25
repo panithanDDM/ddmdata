@@ -1,0 +1,147 @@
+extends ../layout
+
+block content
+    include ../util/navbar
+    include ../util/sidebar
+
+    main(id="main" class="main")
+        div(class="pagetitle")
+            h1 Survey Record
+
+        section(class="section dashboard")
+            div(class="row")
+
+                // Left Side Columns
+                div(class="col-lg-4")
+
+                    div(class="row")
+
+                        // Sum project Card
+                        div(class="col-lg-12")
+                            div(class="card info-card sales-card")
+                                div(class="card-body")
+                                    h5(class="card-title")
+                                        | Project 
+                                        span | Sum of Project
+                                    div(class="d-flex align-items-center")
+                                        div(class="card-icon rounded-circle d-flex align-items-center justify-content-center")
+                                            i(class="bi bi-cart")
+                                        div(class="ps-3")
+                                            h6= totalProject
+                        // END Sum project Card
+                    
+                    // Sum survey Record
+                    div(class="row")
+                        div(class="col-12")
+                            div(class="card info-card sales-card")
+                                div(class="card-body")
+                                    h5(class="card-title")
+                                        | Survey Record 
+                                        span | Sum of Survey
+                                    div(class="d-flex align-items-center")
+                                        div(class="card-icon rounded-circle d-flex align-items-center justify-content-center")
+                                            i(class="bi bi-cart")
+                                        div(class="ps-3")
+                                            h6 41
+                    //End survey Record
+
+                    // Location map Survey
+                    div(class="row")
+                        div(class="col-12")
+                            div(class="card")
+                                div(class="card-body")
+                                    h5(class="card-title")
+                                        | Survey Location |
+                                    div(id="map" class="card info-card")
+                                    script.
+                                        let map = L.map('map').setView([13.297010, 100.921484], 5);
+                                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                        attribution: '&copy; DDM'
+                                        }).addTo(map);
+                    // End Location map Survey
+                
+                // END Left Side Columns
+                
+
+
+
+                //Right side column
+
+                div(class="col-lg-8")
+
+                    div(class="row")
+                        // Table Project Record
+                        div(class="col-12")
+                            div(class="card recent-sales overflow-auto")
+                                div(class="card-body")
+                                    h5(class="card-title") Project Name 
+                                        span Test
+                                    table(class="table table-borderless datatable")
+                                        thead
+                                            tr
+                                                th(scope='col' style='text-align: center;') Add Form
+                                                th(scope='col') ID
+                                                th(scope='col') Project Name
+                                                th(scope='col') Year 
+                                                th(scope='col') Sum survey
+                                                
+                                        tbody 
+                                            each project, index in data
+                                                tr
+                                                    td(class="text-center")
+                                                        a(href=`/survey/${project.id}`) 
+                                                            i(class="bi bi-cart")
+                                                    td= index + 1
+                                                    td= project.name
+                                                    td= project.year
+                                                    td= project.location
+                                                    
+                        //-End Table Project Record
+                    
+                    div(class="row")
+                        // Form Add Project Name
+                        div(class="col-12")
+                            div(class="card recent-sales overflow-auto")
+                                div(class="card-body")
+                                    h5(class="card-title") Add Project Name 
+                                        span | For Survey Record
+                                    form(action="/survey/" method="POST" class="row needs-validation" novalidate) 
+
+                                        div(class="row")
+                                            div(class="col-lg-6 col-sm-12 pt-sm-3")
+                                                label(for="project_name" Class="form-label") Project Name
+                                                input(name="project_name" type="text" class="form-control" placeholder="ถนนถ่ายโอน" required)
+                                                div(class="invalid-feedback") 
+                                                    p Please provide Project Name
+                                            div(class="col-lg-6 col-sm-12 pt-sm-3")
+                                                label(for="project_year" Class="form-label") Project Year
+                                                input(name="project_year" type="number" class="form-control" placeholder="2022" required)
+                                                div(class="invalid-feedback ")
+                                                    p Please provide Project Year
+                                            div(class="row align-items-end")
+                                                div(class="col-lg-6 col-sm-12 pt-sm-3")
+                                                    label(for="project_location" Class="form-label") Location 
+                                                    input(name="project_location" type="text" class="form-control" placeholder="ฉะเชิงเทรา" required)
+                                                    div(class="invalid-feedback ")
+                                                        p Please provide Location
+                                                div(class="col-lg-6 col-sm-12 pt-sm-3 text-center")
+                                                    //- button(type="submit" class="btn btn-primary mt-3") Save Project
+                                                    button(type="button" class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#basicModal") Save Project
+                                                    
+                                                    // model
+                                                    div(class="modal fade" id="basicModal" tabindex="-1")
+                                                        div(class="modal-dialog")
+                                                            div(class="modal-content")
+                                                                div(class="modal-header")
+                                                                    h5(class="modal-title") Comfirm to save new project.
+                                                                    button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close")
+                                                                div(class="modal-body")
+                                                                    p Please verify the information before recording it.
+                                                                    button(type="submit" class="btn btn-primary mt-3") Confirm
+
+
+
+
+                        // End Form Add Project Name
+                
+                // END Right side column

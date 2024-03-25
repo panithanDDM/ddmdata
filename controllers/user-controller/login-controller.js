@@ -7,13 +7,7 @@ const { pool } = require('../../utilities/poolConfig')
 const userModel = require('../../models/user-model')
 
 
-
-
-
-
-
-
-// render Login page
+// render หน้า Login 
 const loginPage = (req, res) => {
     res.render('index', {
         flash: req.flash(),
@@ -23,11 +17,9 @@ const loginPage = (req, res) => {
 module.exports.loginPage = loginPage
 
 
-
-
-
-// Login System
+// ฟังชั่นการตรวจสอบผู้ใช้ Login
 const loginSystem = async (req, res) => {
+
     const { username, password } = req.body
 
     try {
@@ -63,7 +55,7 @@ module.exports.loginSystem = loginSystem
 
 
 
-// LOGOUT CONTROL
+// ฟังชั่นสำหรับการ LOGOUT 
 const logout = (req, res) => {
     req.session.destroy(() => {
         res.redirect('/')

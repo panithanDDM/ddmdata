@@ -44,3 +44,16 @@ module.exports.userRegister = userRegister
 
 
 
+const getUserByEmail = async (email) => {
+    try {
+        const query = 'SELECT * FROM user_profile WHERE email = $1';
+        const values = [email];
+        const result = await pool.query(query, values);
+        return result.rows[0]; // ส่งผลลัพธ์เป็นแถวแรกที่พบหากมีผู้ใช้ด้วยอีเมล์ที่ระบุ
+    } catch (error) {
+        console.error('Error', error);
+        throw new Error(error);
+    }
+};
+
+module.exports.getUserByEmail = getUserByEmail

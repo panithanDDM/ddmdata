@@ -10,6 +10,7 @@ const expressSession = require('express-session')
 const usersRouter = require('./routes/users-router');
 const homeRouter = require('./routes/home-router')
 const invenRouter = require('./routes/inventory-router')
+const surveyRouter = require('./routes/survey-router')
 
 //Middleware require
 const redirectIfAuth = require('./middleware/redirectIfAuth')
@@ -71,6 +72,7 @@ app.use('*', (req, res, next) => {
 app.use('/', usersRouter);
 app.use('/home', homeRouter)
 app.use('/inventory', invenRouter)
+app.use('/survey', surveyRouter)
 
 
 

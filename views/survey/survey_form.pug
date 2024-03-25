@@ -1,0 +1,330 @@
+extends ../layout
+
+block content
+    include ../util/navbar
+    include ../util/sidebar
+
+    main(id="main" class="main")
+        div(class="pagetitle")
+            h1 Survey Record Form
+
+        section(class="section dashboard")
+            div(class='row')
+                div(class="col-lg-10 mx-auto")
+                    div(class="card")
+                        div(class="card-body")
+                            h5(class="card-title") F-OP-03 Drone Operation 
+                                span | (Flight Checklist)
+                            
+                            form
+                                //Form group 1
+                                div(class="row" id="form-group1")
+                                    div(class="col-md-6 col-sm-12")
+                                        div(class="form-floating")
+                                            input(type="text" class="form-control" id="floatingPilot")
+                                            label(for="floatingPilot" class="form-label") Pilot
+                                        div(class="form-floating mt-4")
+                                            input(type="text" class="form-control" id="floatingCoPilot")
+                                            label(for="floatingCoPilot" class="form-label") Co-Pilot
+                                        div(class="row")
+                                            div(class="col-6")
+                                                div(class="form-floating mt-4")
+                                                    input(type="text" class="form-control" id="floatingCoPilot" value=`${project.name}` disabled)
+                                                    label(for="floatingCoPilot" class="form-label") Project Name
+                                            div(class="col-6")
+                                                div(class="form-floating mt-4")
+                                                    //- input(type="file" name="" class="custom-file")
+
+                                        div(class="form-floating mt-4")
+                                            
+                                            select(class="form-select" aria-label="Default select example")
+                                                each item in inventory
+                                                    option(value=`${item.name}`)= item.name 
+                                            label(for="floatingCoPilot" class="form-label") Drone name
+                                        
+                                        div(class="row")
+                                            div(class="col-6")
+                                                div(class="form-floating mt-4")
+                                                    input(type="text" class="form-control" id="latitude" disabled)
+                                                    label(for="floatingCoPilot" class="form-label") Latiture
+                                            div(class="col-6")
+                                                div(class="form-floating mt-4")
+                                                    input(type="text" class="form-control" id="longitude" disabled)
+                                                    label(for="floatingCoPilot" class="form-label") longitude
+                                    div(class="col-md-6 col-sm-12 py-3")
+                                        div(id="map" class="card")
+
+                                    div(class="row mt-4")
+                                        div(class="col-4 mx-auto text-center")
+                                        div(class="col-4 mx-auto text-center")
+                                            button(id="btn-1" type="button" class="btn btn-outline-primary") Nexrt
+                                
+                                // END Form group 1
+                                
+                                // Form group 2 -style="display:none;"
+                                div(class="row" id="form-group2")
+                                    div(class="col-md-6 col-sm-12")#test1
+                                        div(class="form-floating mb-2")
+                                            input(type="text" class="form-control" id="floatingPilot")
+                                            label(for="floatingPilot" class="form-label") Cloud Cover | %
+                                        div(class="form-floating mt-4")
+                                            input(type="text" class="form-control" id="floatingPilot")
+                                            label(for="floatingPilot" class="form-label") Temperature | °C
+                                    div(class="col-md-6 col-sm-12")#test1
+                                        div(class="form-floating")
+                                            input(type="text" class="form-control" id="floatingPilot")
+                                            label(for="floatingPilot" class="form-label") Wind speed | m/s
+                                        div(class="form-floating mt-4")
+                                            select(class="form-select" aria-label="Default select example")
+                                                option(value="") North
+                                                option(value="") North East
+                                                option(value="") East
+                                                option(value="") South East
+                                                option(value="") South
+                                                option(value="") South West
+                                                option(value="") West
+                                                option(value="") North West 
+                                            label(for="floatingPilot" class="form-label") Wind direction 
+                                    div(class="row mt-4")
+                                        div(class="col-4 mx-auto text-center")#test1
+                                            button(id="btn-2" type="button" class="btn btn-outline-secondary") Previous
+                                        div(class="col-4 mx-auto text-center")#test1
+                                            button(id="btn-3" type="button" class="btn btn-outline-primary") Next
+                                // End Form group 2
+
+
+                                // Form group 3
+                                div(class="row" id="form-group3")
+                                    div(class="col-md-6 col-sm-12")#test1
+                                        div(class="row")#test1
+                                            div(class="col-9 align-items-center")
+                                               p ห่างไกลสนามบิน				
+                                            div(class="col-3")
+                                                select(name="", class="form-select") 
+                                                    option(value="") Yes
+                                                    option(value="") No
+                                        div(class="row")
+                                            div(class="col-9")
+                                               p ปลอดภัยจากฝูงชน สัตว์ และทรัพย์สิน
+                                            div(class="col-3")
+                                                select(name="", class="form-select") 
+                                                    option(value="") Yes
+                                                    option(value="") No
+                                            div(class="col-9")
+                                               p ปราศจากสิ่งกีดขวางเหนือศรีษะ เช่น อาคาร ต้นไม้ เสาไฟฟ้า
+                                            div(class="col-3")
+                                                select(name="", class="form-select") 
+                                                    option(value="") Yes
+                                                    option(value="") No
+                                            div(class="col-9")
+                                               p มีระบุสถานที่ขึ้นและลงที่ชัดเจน
+                                            div(class="col-3")
+                                                select(name="", class="form-select") 
+                                                    option(value="") Yes
+                                                    option(value="") No
+                                            div(class="col-9")
+                                               p(class="small align-middle") มีพื้นที่ลงจอดสำรอง
+                                            div(class="col-3")
+                                                select(name="", class="form-select") 
+                                                    option(value="" class="small") Yes
+                                                    option(value="" class="small") No
+
+                                                    
+                                                
+                                            
+                                            
+                                    div(class="col-md-6 col-sm-12")#test
+
+                                    div(class="row mt-4")
+                                        div(class="col-4 mx-auto text-center")#test1
+                                            button(id="btn-4" type="button" class="btn btn-outline-secondary") Previous
+                                        div(class="col-4 mx-auto text-center")#test1
+                                            button(id="btn-5" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal") Save
+                                        
+                                        div(class="modal fade" id="basicModal" tabindex="-1")
+                                            div(class="modal-dialog")
+                                                div(class="modal-content")
+                                                    div(class="modal-header")
+                                                        h5(class="modal-title") Save Data F-OP-03
+                                                        button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close")
+                                                    div(class="modal-body")
+                                                        p Please re-check data before summiting.
+                                                        button(type="submit" class="btn btn-primary") Save
+
+
+
+
+
+
+
+                                script.
+                                    $(document).ready(function() {
+                                        $('#btn-1').click(function(){
+                                            $('#form-group1').hide()
+                                            $('#form-group2').show()
+                                        });
+                                        $('#btn-2').click(function(){
+                                            $('#form-group1').show()
+                                            $('#form-group2').hide()
+                                        });
+                                        $('#btn-3').click(function(){
+                                            $('#form-group2').hide()
+                                            $('#form-group3').show()
+                                        });
+                                        $('#btn-4').click(function(){
+                                            $('#form-group2').show()
+                                            $('#form-group3').hide()
+                                        });
+                                    })
+                                    
+                                        
+
+
+
+                       
+                        //-     $(document).ready(function() {
+                        //-         $('#next-btn1').click(function() {
+                        //-             $('#form-group1').hide()
+                        //-             $('#form-group2').show()
+                        //-         })
+                        //-         //- $('#next-btn-3').click(function() {
+                        //-         //-     $('#form-group3').show()
+                        //-         //-     $('#form-group2').hide()
+                        //-         //- })
+                        //-     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //- div(class="col-sm-6 card")
+                //-     div(id="map")
+
+                //- div(class="col-sm-6 card")
+                //-     h1 Recod
+                //-     h4 ฟอร์ฺมสำหรับ
+                //-     hr
+                //-     form#fieldForm(enctype='multipart/form-data')
+                //-         .form-group
+                //-             label(for='place') ชื่อสถานที่
+                //-             input#splace.form-control(type='text' required='')
+                //-         .form-group
+                //-             label(for='type') ประเภท:
+                //-             select#stype.form-control(required='')
+                //-                 option(value='อาคารพานิชย์') อาคารพานิชย์
+                //-                 option(value='บ้านเดี่ยว') บ้านเดี่ยว
+                //-                 option(value='สถานที่ราชการ') สถานที่ราชการ
+                //-                 option(value='อื่นๆ') อื่นๆ
+                //-         .form-group
+                //-             label(for='desc') คำอธิบาย
+                //-             input#sdesc.form-control(type='text' required='')
+                //-             input#latitude( name='latitude', value='')
+                //-             input#longitude( name='latitude', value='')
+                //-         .form-group
+                //-             input#imagename(type='file' name='imagename')
+                //-         hr
+                //-         button#button.btn.btn-success(type='submit') ส่งข้อมูล
+                //-         button#edit.btn.btn-info(type='button' onclick='editData()') แก้ใขข้อมูล
+                //-         button#refresh.btn.btn-outline-info(type='button' onclick='refreshPage()') refresh
+                //-         | &nbsp; |
+                //-         button#remove.btn.btn-danger(type='button' onclick='deleteData()') Delete
+                //-         br
+                //-         span#status
+                //-     hr
+                //-     form
+                        //- #form-group1
+                        //-     label(for="input1") Input 1:
+                        //-     input#input1(type="text")
+                        //-     button#next-btn1(type="button") Next
+                        //-     //- button#next-btn(type="button") Back
+
+                        //- #form-group2(style="display:none;")
+                        //-     label(for="input2") Input 2:
+                        //-     input#input2(type="text")
+                        //-     button#next-btn3(type="button") Next
+                        //-     button#next-btn4(type="button") Back
+
+                        //- //- #form-group3(style="display:none;")
+                        //- //-     label(for="input3") Input 2:
+                        //- //-     input#input3(type="text")
+
+                        //- //- #form-group4(style="display:none;")
+                        //- //-     label(for="input4") Input 2:
+                        //- //-     input#input4(type="text")
+
+                        
+                        //- script.
+                        //-     $(document).ready(function() {
+                        //-         $('#next-btn1').click(function() {
+                        //-             $('#form-group1').hide()
+                        //-             $('#form-group2').show()
+                        //-         })
+                        //-         //- $('#next-btn-3').click(function() {
+                        //-         //-     $('#form-group3').show()
+                        //-         //-     $('#form-group2').hide()
+                        //-         //- })
+                        //-     })
+
+    script.
+        
+
+        var map = L.map('map', {
+            center: [16.820378, 100.265787],
+            zoom: 13
+        });
+
+        var gps;
+
+        function loadMap() {
+            var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            }).addTo(map);
+        }
+
+        function onLocationFound(e) {
+            gps = L.circleMarker(e.latlng, { draggable: true });
+            gps.addTo(map).bindPopup("Current Location").openPopup();
+            const latitude = e.latlng.lat.toFixed(6);
+            const longitude = e.latlng.lng.toFixed(6);
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+
+             if (gps) {
+                gps.on('dragend', function(event) {
+                    const position = gps.getLatLng();
+                    const latitude = position.lat.toFixed(6);
+                    const longitude = position.lng.toFixed(6);
+                    document.getElementById('latitude').value = latitude;
+                    document.getElementById('longitude').value = longitude;
+                });
+            }
+        }
+
+        function onLocationError(e) {
+            console.log(e.message);
+        }
+
+        
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+        map.locate({ setView: true, maxZoom: 16 });
+        $(".leaflet-control-zoom").css("visibility", "hidden");
+
+        // Load map on document ready
+        $(document).ready(function() {
+            loadMap();
+            // Manually trigger location found event to populate form fields with initial location
+            map.fire('locationfound', {latlng: map.getCenter()});
+        });
+
+                    

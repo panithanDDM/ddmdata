@@ -1,21 +1,9 @@
 const { pool } = require('../utilities/poolConfig')
 
-
-//GET ALL DATA 
-// const InvenData = async (limit, offset) => {
-//     try {
-//         const query = `SELECT * FROM inventory ORDER BY date DESC LIMIT $1 OFFSET $2`;
-//         const result = await pool.query(query, [limit, offset]);
-//         return result.rows;
-//     } catch (error) {
-//         console.log('ERROR INVEN-MODEL :: ', error);
-//         res.render('error')
-//     }
-// }
-// module.exports.InvenData = InvenData
+// ดึงข้อมูลทั้งหมดจาก database
 const InvenData = async () => {
     try {
-        const query = `SELECT * FROM inventory`
+        const query = `SELECT * FROM inventory ORDER BY date DESC`
         const result = await pool.query(query)
         return result.rows
     }
@@ -78,25 +66,6 @@ module.exports.pendingItem = pendingItem
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //สำหรับข้อมูลที่กรอกในฟอร์มทะเบียนทรัพย์สิน
 const inventorySaveData = async (
     name,
@@ -137,3 +106,33 @@ const getInventoryById = async (id) => {
     }
 }
 module.exports.getInventoryById = getInventoryById
+
+//สำหรับการอัพเดตตาม ID
+const updateInventory = async (id, newData) => {
+    try {
+        const { name, model, serail_number, type, status, date } = newData;
+        const query = `UPDATE inventory SET name = $1, model = $2, serail_number = $3, type = $4, status = $5, date = $6 WHERE id = $7`;
+        const values = [name, model, serail_number, type, status, date, id];
+        await pool.query(query, values)
+        console.log(`Update success`)
+    }
+    catch (error) {
+        console.error(`Error from updateinventoryById :: ${error}`)
+        throw error
+    }
+}
+module.exports.updateInventory = updateInventory
+
+
+// ลบข้อมูลตาม ID ทีได้มา
+const deleteInventoryById = async (id) => {
+    try {
+        const query = `DELETE FROM inventory WHERE id = $1`
+        await pool.query(query, [id])
+    }
+    catch (error) {
+        console.log(`Error From deleteInventoryById :: ${error} `)
+        throw error;
+    }
+}
+module.exports.deleteInventoryById = deleteInventoryById

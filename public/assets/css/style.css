@@ -1234,8 +1234,18 @@ h6 {
 
 
 
-
-
 #map {
-  height: 35vh;
+  height: 30vh;
+  /* border: 1px red solid; */
+}
+
+
+#test{
+  border: 1px red solid;
+  height: 100px;
+}
+
+
+#test1{
+  border: 1px red solid;
 }

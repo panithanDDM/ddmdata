@@ -10,11 +10,6 @@ const redirectIfAuth = require('../middleware/redirectIfAuth')
 const AuthChecker = require('../middleware/authChecker')
 
 
-/* GET users listing. */
-// router.get('/', function (req, res, next) {
-//   res.render('index');
-// });
-
 router.get('/', redirectIfAuth, loginController.loginPage)
 router.post('/', loginController.loginSystem)
 

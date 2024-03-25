@@ -11,20 +11,24 @@ const registerPage = (req, res) => {
 module.exports.registerPage = registerPage
 
 
-// userModel.loginModel
-
-
-
 const createUser = async (req, res) => {
     const { username, email, password, ConfirmPassword } = req.body
     console.log(username, email, password, ConfirmPassword)
+
     try {
-        if (password !== ConfirmPassword) {
-            req.flash('error', 'Password do not macth')
-            res.redirect('/register/')
-        } else {
-            await userModel.userRegister(email, username, password)
-            res.redirect('/')
+        // ฟังชั่นการตรวจสอบว่ามี Username ในระบบหรือยัง
+        const existingUser = await userModel.getUserByEmail(email);
+        if (existingUser) { // ถ้ามี Username ในระบบแล้ว
+            req.flash('error', 'Email is already registered');
+            return res.redirect('/register/');
+        } else { //ถ้ายังไม่มี Username ในระบบ
+            if (password !== ConfirmPassword) { //ถ้ารหัสผ่านไม่ตรงกัน
+                req.flash('error', 'Password do not macth')
+                res.redirect('/register/')
+            } else {
+                await userModel.userRegister(email, username, password)
+                res.redirect('/')
+            }
         }
     }
     catch (error) {

@@ -16,117 +16,57 @@ block content
                         div(class="card-body")
                             form(action="/inventory/form/" method="POST" enctype="multipart/form-data" class="row needs-validation" novalidate) 
 
-                                .row.mt-4
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                div(class="row mt-4")
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="name" Class="form-label") Equiment Name 
                                         input(name="name" type="text" class="form-control" required)
-                                        .invalid-feedback 
+                                        div(class="invalid-feedback") 
                                             p Please provide data Name of Equiement
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="model" Class="form-label") Equiment Model
                                         input(name="model" type="text" class="form-control" required)
-                                        .invalid-feedback 
+                                        div(class="invalid-feedback ")
                                             p Please provide Equiment Model
                                 
-                                .row.mt-4
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                div(class="row mt-4")
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="serail_number" Class="form-label") Serial number
                                         input(name="serail_number" type="text" class="form-control" required)
-                                        .invalid-feedback 
+                                        div(class="invalid-feedback")
                                             p Please provide Serial number
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="type" Class="form-label") Type
                                         select(name="type" class="form-select" aria-label="Default select example" required)   
-                                            option(value="Drone ") Drone 
-                                            option(value="Batterty") Batterty
+                                            option(value="Drone") Drone 
+                                            option(value="Battery") Battery
                                             option(value="Sensor") Sensor
                                             option(value="Camera") Camera
                                             option(value="Charger") Charger
-                                            option(value="Orther") Orther
+                                            option(value="Accessory") Accessory
+                                            option(value="Other") Other
                                 
-                                .row.mt-4
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                div(class="row mt-4")
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="status" Class="form-label") Status
                                         select(name="status" class="form-select" aria-label="Default select example" required)   
                                             option(value="Active") Active
                                             option(value="Pending") Pending
-                                            option(value="Damage") Damage
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                            option(value="Damaged") Damaged
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="image" class="form-label") Image
                                         input(name="image" type="file" class="form-control" capture="user" accept="image/*" required)
-                                        .invalid-feedback 
+                                        div(class="invalid-feedback ")
                                             p Please provide Image
 
-                                .row.mt-4
-                                    .col-lg-6.col-sm-12.pt-sm-3
+                                div(class="row mt-4")
+                                    div(class="col-lg-6 col-sm-12 pt-sm-3")
                                         label(for="date" class="form-label") Date 
                                         input(name="date" type="date" class="form-control" required)
-                                        .invalid-feedback 
+                                        div(class="invalid-feedback")
                                             p Please provide Date
-                                    .col-lg-6.col-sm-12.d-flex.justify-content-center.align-items-center.pt-sm-5
-                                        button.btn.btn-primary.mx-4(type='submit') Submit
-                                        button.btn.btn-secondary.mx-4(type='reset') Reset
-
-
-
-
-
-    //- .container.bg-light.rounded-4.p-5
-    //-     .row 
-    //-         .col 
-    //-             h2.text-center INVENTORY FORM
-    //-     hr
-    //-     .row 
-    //-         .col-8.mx-auto.rounded-4.shadow
-    //-             form(action="/inventory/form/" method="POST" enctype="multipart/form-data" class="row needs-validation" novalidate) 
-    //-                 .row.mt-2
-    //-                     .col-6
-    //-                         label(for="name" Class="form-label") Equiment Name 
-    //-                         input(name="name" type="text" class="form-control" required)
-    //-                         .invalid-feedback 
-    //-                             p Please provide data Name of Equiement
-    //-                     .col-6
-    //-                         label(for="model" Class="form-label") Equiment Model
-    //-                         input(name="model" type="text" class="form-control" required)
-    //-                         .invalid-feedback 
-    //-                             p Please provide Equiment Model
-
-                                
-    //-                 .row.mt-2
-    //-                     .col-6
-    //-                         label(for="serail_number" Class="form-label") Serial number
-    //-                         input(name="serail_number" type="text" class="form-control" required)
-    //-                         .invalid-feedback 
-    //-                             p Please provide Serial number
-    //-                     .col-6
-    //-                         label(for="type" Class="form-label") Type
-    //-                         select(name="type" class="form-select" aria-label="Default select example" required)   
-    //-                             option(value="Drone ") Drone 
-    //-                             option(value="Batterty") Batterty
-    //-                             option(value="Sensor") Sensor
-    //-                             option(value="Camera") Camera
-    //-                             option(value="Charger") Charger
-    //-                             option(value="Orther") Orther
-    //-                 .row.mt-2
-    //-                     .col-6
-    //-                         label(for="status" Class="form-label") Status
-    //-                         select(name="status" class="form-select" aria-label="Default select example" required)   
-    //-                             option(value="Active") Active
-    //-                             option(value="Pending") Pending
-    //-                             option(value="Damage") Damage
-    //-                     .col-6
-    //-                         label(for="image" class="form-label") Image
-    //-                         input(name="image" type="file" class="form-control" capture="user" accept="image/*" required)
-    //-                         .invalid-feedback 
-    //-                             p Please provide Image
-    //-                 .row.mt-2.mb-4
-    //-                     .col-6
-    //-                         label(for="date" class="form-label") Date 
-    //-                         input(name="date" type="date" class="form-control" required)
-    //-                         .invalid-feedback 
-    //-                             p Please provide Date
-    //-                     .col-6.d-flex.align-items-center.text-center
-    //-                         button(type="submit" class="btn btn-outline-primary mx-auto d-block mt-4") Save Data  
+                                    div(class="col-lg-6 col-sm-12 d-flex justify-content-center align-items-center pt-sm-5")
+                                        button(type='submit' Class="btn btn-primary mx-4") Submit
+                                        button(type='reset' class="btn btn-secondary mx-4") Reset
 
 
 

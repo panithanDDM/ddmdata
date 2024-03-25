@@ -19,15 +19,27 @@ const storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage: storage
+});
 
 
 
 
 router.get('/form/', AuthChecker, inventoryController.invenForm)
-router.post('/form/', upload.single('image'), inventoryController.formInventory)
+router.post('/form/', AuthChecker, upload.single('image'), inventoryController.formInventory)
 
 //get By ID 
-router.get('/:id/', inventoryController.detailInventory)
+router.get('/:id/', AuthChecker, inventoryController.detailInventory)
+
+//อัพเดตฟอร์มตาม ID
+router.post('/:id/', AuthChecker, inventoryController.formUpdateInventory)
+// router.post('/:id/update', inventoryController.updateInventory);
+
+// Delete inventory item by ID
+router.post('/:id/delete', AuthChecker, inventoryController.deleteInventory);
 
 module.exports = router;
+
+
+
